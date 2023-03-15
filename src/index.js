@@ -27,20 +27,32 @@ function addProject(project, task, dueDate, priority, description) {
     myProjects.push(new myProject(project, [new myTask(task, dueDate, priority, description)])); 
 }
 
-function addTaskToProject(index, task, dueDate, priority, description) {
-    myProjects[index].push(new myTask(task, dueDate, priority, description));    
+function addTaskToProject(project, task, dueDate, priority, description) {
+    myProjects[project]['tasks'].push(new myTask(task, dueDate, priority, description));    
 }
 
 function removeTask(index) {
     myTasks.splice(index, 1);
 }
 
+function removeTaskFromProject (project, index) {
+    myProjects[project]['tasks'].splice(index, 1);
+}
+
 function clearTasks() {
     myTasks = []; 
 };
 
+function clearProjects() {
+    myProjects = []; 
+}
+
 function changeTask(index, element, change) {
     myTasks[index][element] = change; 
+}
+
+function changeProjectTasks (project, task, element, change) {
+    myProjects[project]['tasks'][task][element] = change; 
 }
 
 addTask(1, 11223333, 3, 1234); 
@@ -51,6 +63,15 @@ changeTask(0, 'task', 'something');
 // clearTasks(); 
 // console.log(myTasks); 
 
-addProject(1, 11, 22, 33, 44);
-addProject(2, 11, 22, 33, 44);
+addProject('Gerhard', 11, 22, 33, 44);
+addProject('Berk', 11, 22, 33, 44);
+addTaskToProject(0, 33, 11, 22, 33, 44);
+// removeTaskFromProject(0, 1) 
+changeProjectTasks(0, 0, 'task', 'sonethingelse')
+clearProjects();
+addProject('Gerhard', 11, 22, 33, 44);
+
+
 console.log(myProjects); 
+
+
