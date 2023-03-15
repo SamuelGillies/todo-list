@@ -1,5 +1,9 @@
 import * as tasks from './tasks.js'; 
 import * as projects from './projects.js'; 
+import header from './header.js'; 
+
+document.body.appendChild(header()); 
+
 
 // Testing
 
@@ -20,5 +24,3 @@ projects.addProject('Gerhard', 11, 22, 33, 44);
 
 console.log(tasks.listTasks()); 
 console.log(projects.listProjects()); 
-
-

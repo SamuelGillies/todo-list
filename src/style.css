@@ -1,0 +1,48 @@
+:root {
+    --primary-dark: #333;
+    --secondary-dark: #444;
+    --primary-light: #eee;
+    --secondary-light: #ddd;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('./Raleway/Raleway-VariableFont_wght.ttf');
+  }
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* Container */
+
+#container {
+    display: grid; 
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    height: 100vh;
+}
+
+/* Header */
+
+#header {
+    border: 2pt solid black; 
+    grid-column: 1 / 6;
+    grid-row: 1 / 2;
+    margin: 0;
+}
+
+
+/* Sidebar */
+
+
+
+/* Content */
+
+
+
+/* Footer */
+
+
