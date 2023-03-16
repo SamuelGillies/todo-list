@@ -7,6 +7,39 @@ export class myTask {
         this.priority = priority; 
         this.description = description; 
     }
+
+    setTask(task) {
+        this.task = task; 
+    }
+
+    getTask() {
+        return this.task; 
+    }
+
+    setDueDate(dueDate) {
+        this.dueDate = dueDate; 
+    }; 
+
+    getDueDate() {
+        return this.dueDate; 
+    }
+
+    setPriority(priority) {
+        this.priority = priority; 
+    }
+
+    getPriority() {
+        return this.priority; 
+    }
+
+    setDescription(description){
+        this.description = description; 
+    }
+
+    getDescription() {
+        return this.description; 
+    }
+
 }; 
 
 export function addTask(task, dueDate, priority, description) {
