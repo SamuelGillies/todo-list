@@ -1,11 +1,14 @@
 // import tasks './tasks.js'; 
-import * as projects from './projects.js'; 
+import projectFunc from './todo.js'; 
 import header from './header.js'; 
 
 document.body.appendChild(header()); 
 
 
 // Testing
+
+projectFunc().addProject('Gerhard', 'Edit Audio', '22/04/2024', 3, 'Edit audio, remove hum');
+console.log(projectFunc().listProjects()); 
 
 // tasks.addTask(1, 11223333, 3, 1234); 
 // console.log(tasks.listTasks()); 
@@ -19,7 +22,8 @@ document.body.appendChild(header());
 
 // projects.test().tester(); 
 
-projects.projectFunc().addProject('Gerhard', 'Edit Audio', '22/04/2024', 3, 'Edit audio, remove hum');
+
+
 // projects.addProject('Berk', 'Build digital studio', '25/05/2024', 4, 'Learn React, then build studio as necessary');
 // projects.addProject('Judd', 'Create digital studio', '21/08/2023', 2, 'knock up rough draft of alternative option');
 // projects.addTaskToProject(0, 'Construct archive', '15/05/2024', 2, 'Learn html and css and some backend');
@@ -27,4 +31,3 @@ projects.projectFunc().addProject('Gerhard', 'Edit Audio', '22/04/2024', 3, 'Edi
 // projects.editProjectTasks(0, 0, 'task', 'somethingelse')
 // projects.clearProjects();
 
-console.log(projects.projectFunc().listProjects()); 
