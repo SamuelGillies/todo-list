@@ -1,4 +1,4 @@
-import * as tasks from './tasks.js'; 
+// import tasks './tasks.js'; 
 import * as projects from './projects.js'; 
 import header from './header.js'; 
 
@@ -7,24 +7,24 @@ document.body.appendChild(header());
 
 // Testing
 
-tasks.addTask(1, 11223333, 3, 1234); 
-console.log(tasks.listTasks()); 
-
-
+// tasks.addTask(1, 11223333, 3, 1234); 
+// console.log(tasks.listTasks()); 
 // tasks.addTask(1, 11223333, 3, 1234); 
 // tasks.addTask(2, 223344, 2, 1234); 
 // tasks.addTask(3, 11223333, 1, 1234); 
 // tasks.removeTask(1); 
 // tasks.editTask(0, 'task', 'something');
 // tasks.clearTasks(); 
-
-// projects.addProject('Gerhard', 11, 22, 33, 44);
-// projects.addProject('Berk', 11, 22, 33, 44);
-// projects.addTaskToProject(0, 33, 11, 22, 33, 44);
-// projects.removeTaskFromProject(0, 1) 
-// projects.editProjectTasks(0, 0, 'task', 'sonethingelse')
-// projects.clearProjects();
-// projects.addProject('Gerhard', 11, 22, 33, 44);
-
 // console.log(tasks.listTasks()); 
-// console.log(projects.listProjects()); 
+
+// projects.test().tester(); 
+
+projects.projectFunc().addProject('Gerhard', 'Edit Audio', '22/04/2024', 3, 'Edit audio, remove hum');
+// projects.addProject('Berk', 'Build digital studio', '25/05/2024', 4, 'Learn React, then build studio as necessary');
+// projects.addProject('Judd', 'Create digital studio', '21/08/2023', 2, 'knock up rough draft of alternative option');
+// projects.addTaskToProject(0, 'Construct archive', '15/05/2024', 2, 'Learn html and css and some backend');
+// projects.removeTaskFromProject(0, 1) 
+// projects.editProjectTasks(0, 0, 'task', 'somethingelse')
+// projects.clearProjects();
+
+console.log(projects.projectFunc().listProjects()); 

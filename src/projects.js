@@ -1,6 +1,4 @@
-import * as tasks from './tasks.js'; 
-
-let myProjects = []; 
+import myTask from './tasks.js'; 
 
 export class myProject {
     constructor(project, tasks) {
@@ -25,26 +23,40 @@ export class myProject {
     }
 };
 
-export function addProject(project, task, dueDate, priority, description) {
-    myProjects.push(new myProject(project, [new tasks.myTask(task, dueDate, priority, description)])); 
-}
+let myProjects = []; 
 
-export function addTaskToProject(project, task, dueDate, priority, description) {
-    myProjects[project]['tasks'].push(new tasks.myTask(task, dueDate, priority, description));    
-}
+export function projectFunc() {
 
-export function removeTaskFromProject (project, index) {
-    myProjects[project]['tasks'].splice(index, 1);
-}
+    function listProjects() {
+        return myProjects; 
+    }
 
-export function clearProjects() {
-    myProjects = []; 
-}
+    function addProject(project, task, dueDate, priority, description) {
+        myProjects.push(new myProject(project, [new myTask(task, dueDate, priority, description)])); 
+    }
 
-export function editProjectTasks (project, task, element, change) {
-    myProjects[project]['tasks'][task][element] = change; 
-}
+    function addTaskToProject(project, task, dueDate, priority, description) {
+        myProjects[project]['tasks'].push(new myTask(task, dueDate, priority, description));    
+    }
 
-export function listProjects() {
-    return myProjects; 
-}
+    function removeTaskFromProject (project, index) {
+        myProjects[project]['tasks'].splice(index, 1);
+    }
+
+    function clearProjects() {
+        myProjects = []; 
+    }
+
+    function editProjectTasks (project, task, element, change) {
+        myProjects[project]['tasks'][task][element] = change; 
+    }
+
+    return {
+        listProjects, 
+        addProject, 
+        addTaskToProject, 
+        removeTaskFromProject, 
+        clearProjects, 
+        editProjectTasks    
+    };
+};
