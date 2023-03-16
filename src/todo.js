@@ -1,32 +1,32 @@
 import myProject from './projects.js'; 
 import myTask from './tasks.js'; 
 
-let myProjects = []; 
+let todoList = []; 
 
-export default function projectFunc() {
+export default function todo() {
 
     function listProjects() {
-        return myProjects; 
+        return todoList; 
     }
 
     function addProject(project, task, dueDate, priority, description) {
-        myProjects.push(new myProject(project, [new myTask(task, dueDate, priority, description)])); 
+        todoList.push(new myProject(project, [new myTask(task, dueDate, priority, description)])); 
     }
 
     function addTaskToProject(project, task, dueDate, priority, description) {
-        myProjects[project]['tasks'].push(new myTask(task, dueDate, priority, description));    
+        todoList[project]['tasks'].push(new myTask(task, dueDate, priority, description));    
     }
 
     function removeTaskFromProject (project, index) {
-        myProjects[project]['tasks'].splice(index, 1);
+        todoList[project]['tasks'].splice(index, 1);
     }
 
     function clearProjects() {
-        myProjects = []; 
+        todoList = []; 
     }
 
     function editProjectTasks (project, task, element, change) {
-        myProjects[project]['tasks'][task][element] = change; 
+        todoList[project]['tasks'][task][element] = change; 
     }
 
     return {

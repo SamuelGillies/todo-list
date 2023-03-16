@@ -32,6 +32,18 @@
     grid-column: 1 / 6;
     grid-row: 1 / 2;
     margin: 0;
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+    display: flex; 
+    align-items: center;
+    justify-content: start;
+    padding-left: 4%; 
+    gap: 2%; 
+    font-family: 'Raleway';
+}
+
+#header--icon {
+    filter: invert(1); 
 }
 
 
