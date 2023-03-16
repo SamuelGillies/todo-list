@@ -1,8 +1,14 @@
-// import tasks './tasks.js'; 
 import todo from './todo.js'; 
 import header from './header.js'; 
+import content from './content.js'; 
+import footer from './footer.js'; 
+
 
 document.body.appendChild(header()); 
+document.body.appendChild(content()); 
+document.body.appendChild(footer()); 
+
+
 
 
 // Testing
