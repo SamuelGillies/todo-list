@@ -13,10 +13,10 @@ document.body.appendChild(footer());
 
 // Testing
 
-todo().addProject('Gerhard', 'Edit Audio', '22/04/2024', 3, 'Edit audio, remove hum');
-todo().addProject('Berk', 'Build digital studio', '25/05/2024', 4, 'Learn React, then build studio as necessary');
-todo().addProject('Judd', 'Create digital studio', '21/08/2023', 2, 'knock up rough draft of alternative option');
-console.log(todo().listProjects()); 
+// todo().addProject('Gerhard', 'Edit Audio', '22/04/2024', 3, 'Edit audio, remove hum');
+// todo().addProject('Berk', 'Build digital studio', '25/05/2024', 4, 'Learn React, then build studio as necessary');
+// todo().addProject('Judd', 'Create digital studio', '21/08/2023', 2, 'knock up rough draft of alternative option');
+// console.log(todo().listProjects()); 
 
 // tasks.addTask(1, 11223333, 3, 1234); 
 // console.log(tasks.listTasks()); 

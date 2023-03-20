@@ -3,6 +3,7 @@
     --secondary-dark: #444;
     --primary-light: #eee;
     --secondary-light: #ddd;
+    --selected: rgb(192, 192, 192); 
 }
 
 @font-face {
@@ -14,6 +15,8 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: 'Raleway';
+
 }
 
 /* Container */
@@ -38,7 +41,6 @@
     justify-content: start;
     padding-left: 2%; 
     gap: 1%; 
-    font-family: 'Raleway';
 }
 
 #header--title {
@@ -57,6 +59,76 @@
     grid-column: 1 / 7;
     grid-row: 2 / 7;
     margin: 0;
+    display: flex; 
+    flex-direction: row;
+}
+
+#sidebar {
+    display: flex; 
+    flex-direction: column;
+    justify-items: flex-start; 
+    background-color: var(--secondary-light);
+}
+
+#sidebar--projectsBase, #sidebar--projectsExtra {
+    width: 20vw;
+    padding-top: 0.5rem; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    min-width: 210px;
+}
+
+.button {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
+    justify-content: start;
+    padding: 2% 5%;
+    background-color: var(--secondary-light); 
+    border: 0pt solid black; 
+    border-radius: 4px; 
+    margin-bottom: 5px;
+}
+
+.button:hover {
+    background-color: var(--selected);
+}
+
+.button:active {
+    font-weight: 600;
+}
+
+.label {
+    font-size: 1.2rem;
+}
+
+.icon {
+    padding-right: 10px; 
+    height: 2rem;
+}
+
+#sidebar--projectsTitle {
+    padding-left: 7%;
+    padding-top: 1.5rem; 
+    padding-bottom: 0rem; 
+    font-size: 1.3rem;
+}
+
+#list {
+    background-color: var(--primary-light);
+    height: 100%; 
+    width: 80vw;
+    display: flex; 
+    flex-direction: column;
+
+}
+
+#list--title {
+    padding-left: 15%; 
+    padding-top: 30px;
+    font-size: 2rem;
 }
 
 /* Footer */
