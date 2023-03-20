@@ -122,7 +122,29 @@
     width: 80vw;
     display: flex; 
     flex-direction: column;
+}
 
+.project--title {
+    padding-left: 15%; 
+    padding-right: 15%; 
+    padding-top: 30px;
+    display: flex; 
+    flex-direction: column;
+    gap: 10px; 
+}
+
+.task--display {
+    display: flex; 
+    border: 2pt solid black; 
+    border-radius: 8px;
+    padding: 1%; 
+    gap: 3rem;
+}
+
+.task--display > p {
+    font-style: normal; 
+    font-weight: 400;
+    font-size: 0.8rem; 
 }
 
 #list--title {
