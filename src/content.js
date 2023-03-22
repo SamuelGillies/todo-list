@@ -34,7 +34,7 @@ export default function content () {
     projectsBase.appendChild(inbox); 
     inbox.appendChild(inboxIcon); 
     inbox.appendChild(inboxLabel); 
-    inboxLabel.innerHTML = 'Inbox'; 
+    inboxLabel.innerHTML = 'All Tasks'; 
 
     const today = document.createElement('button'); 
     const todayIcon = document.createElement('img'); 
@@ -58,7 +58,7 @@ export default function content () {
     thisWeek.setAttribute('class', 'button'); 
     thisWeekIcon.setAttribute('id', 'sidebar--thisWeekIcon'); 
     thisWeekIcon.setAttribute('class', 'icon'); 
-    thisWeekIcon.setAttribute('src', '../src/icons/today.svg'); 
+    thisWeekIcon.setAttribute('src', '../src/icons/calendar.svg'); 
     thisWeekLabel.setAttribute('id', 'sidebar--thisWeekLabel'); 
     thisWeekLabel.setAttribute('class', 'label'); 
     projectsBase.appendChild(thisWeek); 
