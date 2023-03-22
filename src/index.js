@@ -1,12 +1,19 @@
-import todo from './todo.js'; 
-import header from './header.js'; 
-import content from './content.js'; 
-import footer from './footer.js'; 
+import generateDOM from './DOM.js'; 
+
+generateDOM();
 
 
-document.body.appendChild(header()); 
-document.body.appendChild(content()); 
-document.body.appendChild(footer()); 
+
+
+// const sidebarInbox = document.getElementById('sidebar--inbox'); 
+// const sidebarToday = document.getElementById('sidebar--today'); 
+// const sidebarThisWeek = document.getElementById('sidebar--thisWeek'); 
+// const sidebarAddProject = document.getElementById('sidebar--addProject'); 
+
+// sidebarInbox.addEventListener('click', events().allTasks()); 
+// sidebarToday.addEventListener('click', events().todayTasks()); 
+// sidebarThisWeek.addEventListener('click', events().thisWeeksTasks()); 
+// sidebarAddProject.addEventListener('click', events().addProject()); 
 
 
 

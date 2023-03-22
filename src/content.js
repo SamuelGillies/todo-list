@@ -1,4 +1,4 @@
-import generateDOM from './DOM-todo.js'; 
+import generateDOM from './DOM.js'; 
 
 
 export default function content () {
@@ -102,3 +102,4 @@ export default function content () {
     return element; 
 
 }
+
