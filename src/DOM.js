@@ -6,9 +6,11 @@ todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata 
 todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
 todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
 todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
-todo().addProject('Berk', 'Build digital studio', '25/05/2024', 4, 'Learn React, then build studio as necessary');
-todo().addProject('Judd', 'Create digital studio', '21/08/2023', 2, 'knock up rough draft of alternative option');
-// console.log(todo().listProjects()); 
+todo().addProject('Berk');
+todo().addTaskToProject(1, 'Build digital studio', '25/05/2024', 4, 'Learn React, then build studio as necessary')
+todo().addProject('Judd');
+todo().addTaskToProject(2, 'Create digital studio', '21/08/2023', 2, 'knock up rough draft of alternative option')
+
 
 
 function header() {
@@ -121,7 +123,7 @@ function fixedContent() {
     addProjectIcon.setAttribute('src', '../src/icons/add.svg'); 
     addProjectLabel.setAttribute('id', 'sidebar--addProjectLabel'); 
     addProjectLabel.setAttribute('class', 'label'); 
-    projectsExtra.appendChild(addProject); 
+    projectsTitle.appendChild(addProject); 
     addProject.append(addProjectIcon,addProjectLabel); 
     addProjectLabel.innerHTML = 'Add'; 
 
@@ -132,6 +134,11 @@ function fixedContent() {
     listTitle.innerHTML = 'Projects'; 
 
     return element; 
+}
+
+function clearSidebar() {
+    const projectsExtra = document.getElementById('sidebar--projectsExtra'); 
+    projectsExtra.innerHTML = ''; 
 }
 
 function writeProjectSidebar() {
@@ -214,6 +221,30 @@ function writeAllTasks() {
     };
 };
 
+function createProjectForm() {
+    const sidebar = document.getElementById('sidebar--projectsExtra'); 
+    const addProjectForm = document.createElement('form'); 
+    addProjectForm.setAttribute('id', 'createProjectForm-form'); 
+    const addProjectInput = document.createElement('input'); 
+    addProjectInput.setAttribute('id', 'project-name'); 
+    const addProjectSubmit = document.createElement('input'); 
+    addProjectSubmit.setAttribute('id', 'project-submit'); 
+    addProjectSubmit.setAttribute('type', 'submit'); 
+    addProjectSubmit.setAttribute('value', 'Add'); 
+    addProjectForm.append(addProjectInput, addProjectSubmit);
+    sidebar.appendChild(addProjectForm); 
+}
+
+function addProjectToDo() {
+    document.getElementById('createProjectForm-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        let project = document.getElementById('project-name').value;
+        todo().addProject(project); 
+        clearSidebar();
+        writeProjectSidebar();    
+    });
+}
+
 function projectButtons() {
     const allTasksBtn = document.getElementById('sidebar--inbox'); 
     const todayTasksBtn = document.getElementById('sidebar--today'); 
@@ -223,6 +254,12 @@ function projectButtons() {
     allTasksBtn.addEventListener('click', (e) => {
         writeAllTasks(); 
     });
+
+    addProjectBtn.addEventListener('click', (e) => {
+        createProjectForm();
+        addProjectToDo(); 
+    });
+
 }
 
 export default function generateDOM() {
@@ -233,7 +270,8 @@ export default function generateDOM() {
         projectButtons(),
     );
 
-    writeProjectSidebar()
+    writeProjectSidebar();
+    console.log(todo().listProjects());
 
 };
 
@@ -241,9 +279,4 @@ export default function generateDOM() {
 
 
 
-// writeProjectSidebar();
-// writeAllTasks();
-
-    // const sidebarToday = document.getElementById('sidebar--today'); 
-    // const sidebarThisWeek = document.getElementById('sidebar--thisWeek'); 
-    // const sidebarAddProject = document.getElementById('sidebar--addProject'); 
+// console.log(todo().listProjects()); 

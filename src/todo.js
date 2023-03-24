@@ -9,9 +9,13 @@ export default function todo() {
         return todoList; 
     }
 
-    function addProject(project, task, dueDate, priority, description) {
-        todoList.push(new myProject(project, [new myTask(task, dueDate, priority, description)])); 
+    function addProject(project) {
+        todoList.push(new myProject(project, [])); 
     }
+
+    // function addProject(project, task, dueDate, priority, description) {
+    //     todoList.push(new myProject(project, [new myTask(task, dueDate, priority, description)])); 
+    // }
 
     function addTaskToProject(project, task, dueDate, priority, description) {
         todoList[project]['tasks'].push(new myTask(task, dueDate, priority, description));    
