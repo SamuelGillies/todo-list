@@ -227,6 +227,7 @@ function createProjectForm() {
     addProjectForm.setAttribute('id', 'createProjectForm-form'); 
     const addProjectInput = document.createElement('input'); 
     addProjectInput.setAttribute('id', 'project-name'); 
+    addProjectInput.setAttribute('placeholder', 'new project'); 
     const addProjectSubmit = document.createElement('input'); 
     addProjectSubmit.setAttribute('id', 'project-submit'); 
     addProjectSubmit.setAttribute('type', 'submit'); 
