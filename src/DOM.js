@@ -10,7 +10,8 @@ todo().addProject('Berk');
 todo().addTaskToProject(1, 'Build digital studio', '25/05/2024', 4, 'Learn React, then build studio as necessary')
 todo().addProject('Judd');
 todo().addTaskToProject(2, 'Create digital studio', '21/08/2023', 2, 'knock up rough draft of alternative option')
-
+// todo().deleteProject(1); 
+console.log(todo().listProjects()); 
 
 
 function header() {
@@ -157,6 +158,7 @@ function writeProjectSidebar() {
         iconSidebar.setAttribute('class', 'icon'); 
         iconSidebar.setAttribute('src', '../src/icons/checklist.svg'); 
         deleteProjectSidebar.setAttribute('class', 'icon, deleteProject'); 
+        deleteProjectSidebar.setAttribute('id', `deleteProject${i}`)
         deleteProjectIcon.setAttribute('class', 'icon, deleteProjectIcon'); 
         deleteProjectIcon.setAttribute('src', '../src/icons/delete.svg');
         labelSidebar.setAttribute('class', 'label'); 
@@ -251,6 +253,7 @@ function projectButtons() {
     const todayTasksBtn = document.getElementById('sidebar--today'); 
     const weekTasksBtn = document.getElementById('sidebar--thisWeek'); 
     const addProjectBtn = document.getElementById('sidebar--addProject'); 
+    const deleteProject = document.getElementById('sidebar--projectsExtra');
 
     allTasksBtn.addEventListener('click', (e) => {
         writeAllTasks(); 
@@ -259,6 +262,15 @@ function projectButtons() {
     addProjectBtn.addEventListener('click', (e) => {
         createProjectForm();
         addProjectToDo(); 
+    });
+
+    deleteProject.addEventListener('click', (e) => {
+        for (let i = 0; i < todo().listProjects().length; i++) {
+            if (e.target.id ===`deleteProject${i}`) {
+                console.log(`delete ${i}`);
+                // todo().deleteProject(i); 
+            }
+        }
     });
 
 }

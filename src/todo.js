@@ -17,6 +17,10 @@ export default function todo() {
     //     todoList.push(new myProject(project, [new myTask(task, dueDate, priority, description)])); 
     // }
 
+    function deleteProject(project) {
+        todoList.splice(project, 1);
+    }
+
     function addTaskToProject(project, task, dueDate, priority, description) {
         todoList[project]['tasks'].push(new myTask(task, dueDate, priority, description));    
     }
@@ -36,6 +40,7 @@ export default function todo() {
     return {
         listProjects, 
         addProject, 
+        deleteProject,
         addTaskToProject, 
         removeTaskFromProject, 
         clearProjects, 
