@@ -81,6 +81,11 @@
     min-width: 210px;
 }
 
+.sidebar--projectContainer {
+    display: flex; 
+
+}
+
 .button {
     display: grid; 
     grid-template-columns: 1fr 4fr 1fr;

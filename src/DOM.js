@@ -148,27 +148,30 @@ function writeProjectSidebar() {
     let projects = todo().listProjects(); 
 
     for (let i = 0; i < projects.length; i++) {
+        let projectBtnContainer = document.createElement('div');
         let titleSidebar = document.createElement('button'); 
         let iconSidebar = document.createElement('img');
         let deleteProjectSidebar = document.createElement('button');
         let deleteProjectIcon = document.createElement('img');
         let labelSidebar = document.createElement('p'); 
 
+        projectBtnContainer.setAttribute('class', 'sidebar--projectContainer');
         titleSidebar.setAttribute('class', 'sidebar--title, button'); 
         iconSidebar.setAttribute('class', 'icon'); 
         iconSidebar.setAttribute('src', '../src/icons/checklist.svg'); 
         deleteProjectSidebar.setAttribute('class', 'icon, deleteProject'); 
         deleteProjectSidebar.setAttribute('id', `deleteProject${i}`)
         deleteProjectIcon.setAttribute('class', 'icon, deleteProjectIcon'); 
+        deleteProjectIcon.setAttribute('id', `deleteProject${i}`);
         deleteProjectIcon.setAttribute('src', '../src/icons/delete.svg');
         labelSidebar.setAttribute('class', 'label'); 
         labelSidebar.innerHTML = projects[i].project;
 
         deleteProjectSidebar.append(deleteProjectIcon); 
+        projectBtnContainer.append(titleSidebar,deleteProjectSidebar);
+        titleSidebar.append(iconSidebar,labelSidebar); 
 
-        titleSidebar.append(iconSidebar,labelSidebar,deleteProjectSidebar); 
-
-        sidebar.append(titleSidebar); 
+        sidebar.append(projectBtnContainer); 
     };
 
 };
@@ -253,7 +256,7 @@ function projectButtons() {
     const todayTasksBtn = document.getElementById('sidebar--today'); 
     const weekTasksBtn = document.getElementById('sidebar--thisWeek'); 
     const addProjectBtn = document.getElementById('sidebar--addProject'); 
-    const deleteProject = document.getElementById('sidebar--projectsExtra');
+    const projectsExtra = document.getElementById('sidebar--projectsExtra');
 
     allTasksBtn.addEventListener('click', (e) => {
         writeAllTasks(); 
@@ -264,13 +267,15 @@ function projectButtons() {
         addProjectToDo(); 
     });
 
-    deleteProject.addEventListener('click', (e) => {
+    projectsExtra.addEventListener('click', (e) => {
         for (let i = 0; i < todo().listProjects().length; i++) {
-            if (e.target.id ===`deleteProject${i}`) {
-                console.log(`delete ${i}`);
-                // todo().deleteProject(i); 
-            }
-        }
+            if (e.target.id === `deleteProject${i}`) {
+                console.log(`delete${i}`);
+                todo().deleteProject(i); 
+                clearSidebar();
+                writeProjectSidebar();    
+            };
+        };
     });
 
 }
