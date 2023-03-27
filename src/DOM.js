@@ -124,7 +124,7 @@ function fixedContent() {
     addProjectIcon.setAttribute('src', '../src/icons/add.svg'); 
     addProjectLabel.setAttribute('id', 'sidebar--addProjectLabel'); 
     addProjectLabel.setAttribute('class', 'label'); 
-    projectsTitle.appendChild(addProject); 
+    projectsTitle.insertAdjacentElement("afterend", addProject); 
     addProject.append(addProjectIcon,addProjectLabel); 
     addProjectLabel.innerHTML = 'Add'; 
 
