@@ -310,19 +310,19 @@ function createTaskForm(i) {
     addTaskForm.setAttribute('id', `createTaskForm${i}`); 
 
     const addTaskInput = document.createElement('input'); 
-    addTaskInput.setAttribute('id', 'project-name'); 
+    addTaskInput.setAttribute('id', 'task-name'); 
     addTaskInput.setAttribute('placeholder', 'Task title'); 
 
     const addDueDateInput = document.createElement('input'); 
-    addDueDateInput.setAttribute('id', 'project-name'); 
+    addDueDateInput.setAttribute('id', 'task-dueDate'); 
     addDueDateInput.setAttribute('placeholder', 'dd/mm/yyyy'); 
 
     const addPriorityInput = document.createElement('input'); 
-    addPriorityInput.setAttribute('id', 'project-name'); 
+    addPriorityInput.setAttribute('id', 'task-priority'); 
     addPriorityInput.setAttribute('placeholder', 'Priority (1-5)'); 
 
     const addDescriptionInput = document.createElement('input'); 
-    addDescriptionInput.setAttribute('id', 'project-name'); 
+    addDescriptionInput.setAttribute('id', 'task-description'); 
     addDescriptionInput.setAttribute('placeholder', 'Description'); 
 
     const addTaskSubmit = document.createElement('input'); 
@@ -341,6 +341,21 @@ function addProjectToDo() {
         todo().addProject(project); 
         clearSidebar();
         writeProjectSidebar();    
+    });
+}
+
+function addTaskToDo(i) {
+    document.getElementById(`createTaskForm${i}`).addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        let task = document.getElementById('task-name').value;
+        let dueDate = document.getElementById('task-dueDate').value;
+        let priority = document.getElementById('task-priority').value;
+        let description = document.getElementById('task-description').value;
+
+        todo().addTaskToProject(i, task, dueDate, priority, description); 
+        clearTaskList();
+        writeProjectTasks(i);
     });
 }
 
@@ -389,7 +404,7 @@ function projectButtons() {
             if (e.target.id === `addTaskBtn${i}`) {
                 console.log(`addTaskBtn${i}`);
                 createTaskForm(i); 
-                // todo().addTaskToProject(i, task, dueDate, priority, description); 
+                addTaskToDo(i); 
             };
         };
     });
