@@ -307,28 +307,33 @@ function createProjectForm() {
 function createTaskForm(i) {
     const addTaskBtn = document.getElementById(`addTaskBtn${i}`); 
     const addTaskForm = document.createElement('form'); 
-    addTaskForm.setAttribute('id', `createTaskForm${i}`); 
+    addTaskForm.setAttribute('id', `createTaskForm${i}`);
+    addTaskForm.setAttribute('class', 'createTaskForm-form'); 
 
     const addTaskInput = document.createElement('input'); 
     addTaskInput.setAttribute('id', 'task-name'); 
+    addTaskInput.setAttribute('class', 'task-addInput'); 
     addTaskInput.setAttribute('placeholder', 'Task title'); 
 
     const addDueDateInput = document.createElement('input'); 
     addDueDateInput.setAttribute('id', 'task-dueDate'); 
+    addDueDateInput.setAttribute('class', 'task-addInput'); 
     addDueDateInput.setAttribute('placeholder', 'dd/mm/yyyy'); 
 
     const addPriorityInput = document.createElement('input'); 
     addPriorityInput.setAttribute('id', 'task-priority'); 
+    addPriorityInput.setAttribute('class', 'task-addInput'); 
     addPriorityInput.setAttribute('placeholder', 'Priority (1-5)'); 
 
     const addDescriptionInput = document.createElement('input'); 
     addDescriptionInput.setAttribute('id', 'task-description'); 
+    addDescriptionInput.setAttribute('class', 'task-addInput'); 
     addDescriptionInput.setAttribute('placeholder', 'Description'); 
 
     const addTaskSubmit = document.createElement('input'); 
     addTaskSubmit.setAttribute('id', 'task-submit'); 
     addTaskSubmit.setAttribute('type', 'submit'); 
-    addTaskSubmit.setAttribute('value', 'Add'); 
+    addTaskSubmit.setAttribute('value', 'Add Task'); 
 
     addTaskForm.append(addTaskInput, addDueDateInput, addPriorityInput, addDescriptionInput, addTaskSubmit);
     addTaskBtn.insertAdjacentElement("afterend", addTaskForm); 
@@ -423,9 +428,3 @@ export default function generateDOM() {
     writeAllTasks();
 
 };
-
-
-
-
-
-// console.log(todo().listProjects()); 
