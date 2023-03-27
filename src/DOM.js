@@ -304,6 +304,36 @@ function createProjectForm() {
     sidebar.appendChild(addProjectForm); 
 }
 
+function createTaskForm(i) {
+    const addTaskBtn = document.getElementById(`addTaskBtn${i}`); 
+    const addTaskForm = document.createElement('form'); 
+    addTaskForm.setAttribute('id', `createTaskForm${i}`); 
+
+    const addTaskInput = document.createElement('input'); 
+    addTaskInput.setAttribute('id', 'project-name'); 
+    addTaskInput.setAttribute('placeholder', 'Task title'); 
+
+    const addDueDateInput = document.createElement('input'); 
+    addDueDateInput.setAttribute('id', 'project-name'); 
+    addDueDateInput.setAttribute('placeholder', 'dd/mm/yyyy'); 
+
+    const addPriorityInput = document.createElement('input'); 
+    addPriorityInput.setAttribute('id', 'project-name'); 
+    addPriorityInput.setAttribute('placeholder', 'Priority (1-5)'); 
+
+    const addDescriptionInput = document.createElement('input'); 
+    addDescriptionInput.setAttribute('id', 'project-name'); 
+    addDescriptionInput.setAttribute('placeholder', 'Description'); 
+
+    const addTaskSubmit = document.createElement('input'); 
+    addTaskSubmit.setAttribute('id', 'task-submit'); 
+    addTaskSubmit.setAttribute('type', 'submit'); 
+    addTaskSubmit.setAttribute('value', 'Add'); 
+
+    addTaskForm.append(addTaskInput, addDueDateInput, addPriorityInput, addDescriptionInput, addTaskSubmit);
+    addTaskBtn.insertAdjacentElement("afterend", addTaskForm); 
+}
+
 function addProjectToDo() {
     document.getElementById('createProjectForm-form').addEventListener('submit', (e) => {
         e.preventDefault();
@@ -320,6 +350,8 @@ function projectButtons() {
     const weekTasksBtn = document.getElementById('sidebar--thisWeek'); 
     const addProjectBtn = document.getElementById('sidebar--addProject'); 
     const projectsExtra = document.getElementById('sidebar--projectsExtra');
+    const list = document.getElementById('list');
+
 
     allTasksBtn.addEventListener('click', (e) => {
         clearTaskList();
@@ -334,7 +366,6 @@ function projectButtons() {
     projectsExtra.addEventListener('click', (e) => {                // select project
         for (let i = 0; i < todo().listProjects().length; i++) {
             if (e.target.id === `project--title${i}`) {
-                console.log(`project${i}`);
                 clearTaskList();
                 writeProjectTasks(i);
             };
@@ -344,12 +375,21 @@ function projectButtons() {
     projectsExtra.addEventListener('click', (e) => {                // delete project
         for (let i = 0; i < todo().listProjects().length; i++) {
             if (e.target.id === `deleteProject${i}`) {
-                console.log(`delete${i}`);
                 todo().deleteProject(i); 
                 clearSidebar();
                 writeProjectSidebar();  
                 clearTaskList();
                 writeAllTasks();  
+            };
+        };
+    });
+
+    list.addEventListener('click', (e) => {                // add task to project
+        for (let i = 0; i < todo().listProjects().length; i++) {
+            if (e.target.id === `addTaskBtn${i}`) {
+                console.log(`addTaskBtn${i}`);
+                createTaskForm(i); 
+                // todo().addTaskToProject(i, task, dueDate, priority, description); 
             };
         };
     });
