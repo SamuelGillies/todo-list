@@ -128,12 +128,6 @@ function fixedContent() {
     addProject.append(addProjectIcon,addProjectLabel); 
     addProjectLabel.innerHTML = 'Add'; 
 
-    const listTitle = document.createElement('h2'); 
-    listTitle.setAttribute('id', 'list--title'); 
-    listTitle.setAttribute('class', 'title'); 
-    list.appendChild(listTitle); 
-    listTitle.innerHTML = 'Projects'; 
-
     return element; 
 }
 
@@ -157,7 +151,9 @@ function writeProjectSidebar() {
 
         projectBtnContainer.setAttribute('class', 'sidebar--projectContainer');
         titleSidebar.setAttribute('class', 'sidebar--title, button'); 
+        titleSidebar.setAttribute('id', `project--title${i}`); 
         iconSidebar.setAttribute('class', 'icon'); 
+        iconSidebar.setAttribute('id', `project--title${i}`); 
         iconSidebar.setAttribute('src', '../src/icons/checklist.svg'); 
         deleteProjectSidebar.setAttribute('class', 'icon, deleteProject'); 
         deleteProjectSidebar.setAttribute('id', `deleteProject${i}`)
@@ -165,6 +161,7 @@ function writeProjectSidebar() {
         deleteProjectIcon.setAttribute('id', `deleteProject${i}`);
         deleteProjectIcon.setAttribute('src', '../src/icons/delete.svg');
         labelSidebar.setAttribute('class', 'label'); 
+        labelSidebar.setAttribute('id', `project--title${i}`); 
         labelSidebar.innerHTML = projects[i].project;
 
         deleteProjectSidebar.append(deleteProjectIcon); 
@@ -175,6 +172,11 @@ function writeProjectSidebar() {
     };
 
 };
+
+function clearTaskList() {
+    const element = document.getElementById('list'); 
+    element.innerHTML = ''; 
+}
 
 function writeAllTasks() {
     const element = document.getElementById('list'); 
@@ -226,6 +228,59 @@ function writeAllTasks() {
     };
 };
 
+function writeProjectTasks(i) {
+    const element = document.getElementById('list'); 
+    let projects = todo().listProjects(); 
+
+    let title = document.createElement("h3");
+    let addTaskBtn = document.createElement("button");
+    title.setAttribute('class', 'project--title'); 
+    addTaskBtn.setAttribute('class', 'button');
+    title.innerHTML = projects[i].project;
+    addTaskBtn.innerHTML = '+ Add';
+    title.append(addTaskBtn);
+
+    element.append(title); 
+
+    let tasksList = projects[i].tasks;
+
+    tasksList.forEach( 
+        function (item) {
+            let taskDetails = document.createElement("div");
+            taskDetails.setAttribute('class', 'task--display'); 
+            let visTask = document.createElement("p");
+            visTask.setAttribute('class', 'task--taskTitle'); 
+            let visDueDate = document.createElement("p");
+            visDueDate.setAttribute('class', 'task--dueDateTitle'); 
+            let vispriority = document.createElement("p");
+            vispriority.setAttribute('class', 'task--priorityTitle'); 
+            let visDescription = document.createElement("p");
+            visDescription.setAttribute('class', 'task--descriptionTitle'); 
+
+            let visStrikethrough = document.createElement("button");
+            visStrikethrough.setAttribute('class', 'task--strikethrough'); 
+            let strikethroughIcon = document.createElement("img"); 
+            strikethroughIcon.setAttribute('class', 'task--strikeIcon');
+            strikethroughIcon.setAttribute('src', '../src/icons/strikethrough.svg');
+            visStrikethrough.appendChild(strikethroughIcon); 
+
+            let visdelete = document.createElement("button");
+            visdelete.setAttribute('class', 'task--delete'); 
+            let deleteIcon = document.createElement("img"); 
+            deleteIcon.setAttribute('class', 'task--deleteIcon');
+            deleteIcon.setAttribute('src', '../src/icons/delete.svg');
+            visdelete.appendChild(deleteIcon); 
+
+            visTask.innerHTML = `${item.task}`;
+            visDueDate.innerHTML = `${item.dueDate}`;
+            vispriority.innerHTML = `${item.priority}`;
+            visDescription.innerHTML = `${item.description}`;
+
+            taskDetails.append(visTask,visDueDate,vispriority,visDescription,visStrikethrough,visdelete);
+            title.append(taskDetails); 
+        });
+    };
+
 function createProjectForm() {
     const sidebar = document.getElementById('sidebar--projectsExtra'); 
     const addProjectForm = document.createElement('form'); 
@@ -259,6 +314,7 @@ function projectButtons() {
     const projectsExtra = document.getElementById('sidebar--projectsExtra');
 
     allTasksBtn.addEventListener('click', (e) => {
+        clearTaskList();
         writeAllTasks(); 
     });
 
@@ -267,13 +323,25 @@ function projectButtons() {
         addProjectToDo(); 
     });
 
-    projectsExtra.addEventListener('click', (e) => {
+    projectsExtra.addEventListener('click', (e) => {                // select project
+        for (let i = 0; i < todo().listProjects().length; i++) {
+            if (e.target.id === `project--title${i}`) {
+                console.log(`project${i}`);
+                clearTaskList();
+                writeProjectTasks(i);
+            };
+        };
+    });
+
+    projectsExtra.addEventListener('click', (e) => {                // delete project
         for (let i = 0; i < todo().listProjects().length; i++) {
             if (e.target.id === `deleteProject${i}`) {
                 console.log(`delete${i}`);
                 todo().deleteProject(i); 
                 clearSidebar();
-                writeProjectSidebar();    
+                writeProjectSidebar();  
+                clearTaskList();
+                writeAllTasks();  
             };
         };
     });
@@ -289,7 +357,7 @@ export default function generateDOM() {
     );
 
     writeProjectSidebar();
-    console.log(todo().listProjects());
+    writeAllTasks();
 
 };
 
