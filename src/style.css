@@ -101,11 +101,21 @@
     margin-bottom: 5px;
 } 
 
-.button:hover {
+.list--button {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    padding: 2% 5%;
+    background-color: var(--secondary-light); 
+    border: 0pt solid black; 
+    border-radius: 4px; 
+}
+
+.button:hover, .list--button:hover {
     background-color: var(--selected);
 }
 
-.button:active {
+.button:active, .list--button:active {
     font-weight: 600;
 }
 

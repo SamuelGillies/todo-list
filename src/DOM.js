@@ -183,9 +183,15 @@ function writeAllTasks() {
     let projects = todo().listProjects(); 
 
     for (let i = 0; i < projects.length; i++) {
+
         let title = document.createElement("h3");
+        let addTaskBtn = document.createElement("button");
         title.setAttribute('class', 'project--title'); 
+        addTaskBtn.setAttribute('class', 'list--button');
+        addTaskBtn.setAttribute('id', `addTaskBtn${i}`);
+        addTaskBtn.innerHTML = '+ Add';
         title.innerHTML = projects[i].project;
+        title.append(addTaskBtn);
         element.append(title); 
 
         let tasksList = projects[i].tasks;
@@ -235,9 +241,11 @@ function writeProjectTasks(i) {
     let title = document.createElement("h3");
     let addTaskBtn = document.createElement("button");
     title.setAttribute('class', 'project--title'); 
-    addTaskBtn.setAttribute('class', 'button');
-    title.innerHTML = projects[i].project;
+    addTaskBtn.setAttribute('class', 'list--button');
+    addTaskBtn.setAttribute('id', `addTaskBtn${i}`);
     addTaskBtn.innerHTML = '+ Add';
+    title.innerHTML = projects[i].project;
+    
     title.append(addTaskBtn);
 
     element.append(title); 
