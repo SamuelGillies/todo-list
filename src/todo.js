@@ -37,6 +37,10 @@ export default function todo() {
         todoList[project]['tasks'][task][element] = change; 
     }
 
+    function changeTaskStatus(project, task) {
+        todoList[project]['tasks'][task].status = !todoList[project]['tasks'][task].status; 
+    }
+
     return {
         listProjects, 
         addProject, 
@@ -44,6 +48,7 @@ export default function todo() {
         addTaskToProject, 
         removeTaskFromProject, 
         clearProjects, 
-        editProjectTasks    
+        editProjectTasks,
+        changeTaskStatus   
     };
 };

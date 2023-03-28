@@ -4,6 +4,7 @@ export default class myTask {
         this.dueDate = dueDate; 
         this.priority = priority; 
         this.description = description; 
+        this.status = false; 
     }
 
     setTask(task) {

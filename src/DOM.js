@@ -1,3 +1,4 @@
+import myProject from './projects.js';
 import todo from './todo.js'; 
 
 todo().addProject('Gerhard', 'Edit Audio', '22/04/2024', 3, 'Edit audio, remove hum');
@@ -200,7 +201,7 @@ function writeAllTasks() {
             function (item, index) {
                 let taskDetails = document.createElement("div");
                 taskDetails.setAttribute('class', 'task--display'); 
-                taskDetails.setAttribute('id', `task--display${index}`); 
+                taskDetails.setAttribute('id', `task--display${i}-${index}`); 
                 let visTask = document.createElement("p");
                 visTask.setAttribute('class', 'task--taskTitle'); 
                 let visDueDate = document.createElement("p");
@@ -427,6 +428,23 @@ function projectButtons() {
             if (e.target.id === `addTaskBtn${i}`) {
                 createTaskForm(i); 
                 addTaskToDo(i, selectedProject); 
+            };
+        };
+    });
+
+    list.addEventListener('click', (e) => {                // add strikethrough class
+        for (let i = 0; i < todo().listProjects().length; i++) {
+            for (let j = 0; j < todo().listProjects()[i].tasks.length; j++) {
+                let taskDisplay = document.getElementById(`task--display${i}-${j}`);
+                if ((e.target.id === `task--strikethrough${i}-${j}`) || (e.target.id === `task--strikethroughIcon${i}-${j}`)) {
+                    console.log(`testing${i}${j}`); 
+                    todo().changeTaskStatus(i, j); 
+                    if (todo().listProjects()[i].tasks[j].status == true) {
+                        taskDisplay.classList.add('task--strikethrough');
+                    } else if (todo().listProjects()[i].tasks[j].status == false) {
+                        taskDisplay.classList.remove('task--strikethrough');
+                    }
+                };
             };
         };
     });
