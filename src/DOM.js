@@ -262,7 +262,7 @@ function writeProjectTasks(i) {
         function (item, index) {
             let taskDetails = document.createElement("div");
             taskDetails.setAttribute('class', 'task--display'); 
-            taskDetails.setAttribute('id', `task--display${index}`); 
+            taskDetails.setAttribute('id', `task--display${i}-${index}`); 
             let visTask = document.createElement("p");
             visTask.setAttribute('class', 'task--taskTitle'); 
             let visDueDate = document.createElement("p");
@@ -274,15 +274,19 @@ function writeProjectTasks(i) {
 
             let visStrikethrough = document.createElement("button");
             visStrikethrough.setAttribute('class', 'task--strikethrough'); 
+            visStrikethrough.setAttribute('id', `task--strikethrough${i}-${index}`); 
             let strikethroughIcon = document.createElement("img"); 
             strikethroughIcon.setAttribute('class', 'task--strikeIcon');
+            strikethroughIcon.setAttribute('id', `task--strikethroughIcon${i}-${index}`); 
             strikethroughIcon.setAttribute('src', '../src/icons/strikethrough.svg');
             visStrikethrough.appendChild(strikethroughIcon); 
 
             let visdelete = document.createElement("button");
             visdelete.setAttribute('class', 'task--delete'); 
+            visdelete.setAttribute('id', `task--delete${i}-${index}`); 
             let deleteIcon = document.createElement("img"); 
             deleteIcon.setAttribute('class', 'task--deleteIcon');
+            deleteIcon.setAttribute('id', `task--deleteIcon${i}-${index}`); 
             deleteIcon.setAttribute('src', '../src/icons/delete.svg');
             visdelete.appendChild(deleteIcon); 
 
