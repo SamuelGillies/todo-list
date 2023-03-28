@@ -272,7 +272,7 @@ function writeProjectTasks(i) {
             } else if (item.status === false) {
                 taskDetails.setAttribute('class', 'task--display'); 
             }
-            
+
             taskDetails.setAttribute('id', `task--display${i}-${index}`); 
             let visTask = document.createElement("p");
             visTask.setAttribute('class', 'task--taskTitle'); 
@@ -458,7 +458,25 @@ function projectButtons() {
                     } else if (todo().listProjects()[i].tasks[j].status == false) {
                         taskDisplay.classList.remove('task--strikethrough');
                     }
-                    console.log(todo().listProjects());
+                };
+            };
+        };
+    });
+
+    list.addEventListener('click', (e) => {                // add strikethrough class
+        for (let i = 0; i < todo().listProjects().length; i++) {
+            for (let j = 0; j < todo().listProjects()[i].tasks.length; j++) {
+                let taskDisplay = document.getElementById(`task--display${i}-${j}`);
+                if ((e.target.id === `task--delete${i}-${j}`) || (e.target.id === `task--deleteIcon${i}-${j}`)) {
+                    console.log(`testing${i}${j}`);
+                    todo().removeTaskFromProject(i, j); 
+                    clearTaskList();
+                    if (selectedProject >= 0) {
+                        writeProjectTasks(i);
+                    } else {
+                        writeAllTasks(); 
+                    };
+             
                 };
             };
         };
