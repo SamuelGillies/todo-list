@@ -11,7 +11,6 @@ todo().addProject('Berk');
 todo().addTaskToProject(1, 'Build digital studio', '25/05/2024', 4, 'Learn React, then build studio as necessary')
 todo().addProject('Judd');
 todo().addTaskToProject(2, 'Create digital studio', '21/08/2023', 2, 'knock up rough draft of alternative option')
-// todo().deleteProject(1); 
 console.log(todo().listProjects()); 
 
 
@@ -200,7 +199,13 @@ function writeAllTasks() {
         tasksList.forEach( 
             function (item, index) {
                 let taskDetails = document.createElement("div");
-                taskDetails.setAttribute('class', 'task--display'); 
+                
+                if (item.status === true) {
+                    taskDetails.setAttribute('class', 'task--strikethrough task--display'); 
+                } else if (item.status === false) {
+                    taskDetails.setAttribute('class', 'task--display'); 
+                }
+
                 taskDetails.setAttribute('id', `task--display${i}-${index}`); 
                 let visTask = document.createElement("p");
                 visTask.setAttribute('class', 'task--taskTitle'); 
@@ -261,7 +266,13 @@ function writeProjectTasks(i) {
     tasksList.forEach( 
         function (item, index) {
             let taskDetails = document.createElement("div");
-            taskDetails.setAttribute('class', 'task--display'); 
+
+            if (item.status === true) {
+                taskDetails.setAttribute('class', 'task--strikethrough task--display'); 
+            } else if (item.status === false) {
+                taskDetails.setAttribute('class', 'task--display'); 
+            }
+            
             taskDetails.setAttribute('id', `task--display${i}-${index}`); 
             let visTask = document.createElement("p");
             visTask.setAttribute('class', 'task--taskTitle'); 
@@ -441,13 +452,13 @@ function projectButtons() {
             for (let j = 0; j < todo().listProjects()[i].tasks.length; j++) {
                 let taskDisplay = document.getElementById(`task--display${i}-${j}`);
                 if ((e.target.id === `task--strikethrough${i}-${j}`) || (e.target.id === `task--strikethroughIcon${i}-${j}`)) {
-                    console.log(`testing${i}${j}`); 
                     todo().changeTaskStatus(i, j); 
                     if (todo().listProjects()[i].tasks[j].status == true) {
                         taskDisplay.classList.add('task--strikethrough');
                     } else if (todo().listProjects()[i].tasks[j].status == false) {
                         taskDisplay.classList.remove('task--strikethrough');
                     }
+                    console.log(todo().listProjects());
                 };
             };
         };
