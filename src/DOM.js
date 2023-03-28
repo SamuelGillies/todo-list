@@ -349,7 +349,7 @@ function addProjectToDo() {
     });
 }
 
-function addTaskToDo(i) {
+function addTaskToDo(i, selectedProject) {
     document.getElementById(`createTaskForm${i}`).addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -360,9 +360,14 @@ function addTaskToDo(i) {
 
         todo().addTaskToProject(i, task, dueDate, priority, description); 
         clearTaskList();
-        writeProjectTasks(i);
+        if (selectedProject >= 0) {
+            writeProjectTasks(i);
+        } else {
+            writeAllTasks(); 
+        };
     });
 }
+
 
 function projectButtons() {
     const allTasksBtn = document.getElementById('sidebar--inbox'); 
@@ -372,8 +377,10 @@ function projectButtons() {
     const projectsExtra = document.getElementById('sidebar--projectsExtra');
     const list = document.getElementById('list');
 
+    let selectedProject = -1; 
 
     allTasksBtn.addEventListener('click', (e) => {
+        selectedProject = -1;
         clearTaskList();
         writeAllTasks(); 
     });
@@ -386,6 +393,7 @@ function projectButtons() {
     projectsExtra.addEventListener('click', (e) => {                // select project
         for (let i = 0; i < todo().listProjects().length; i++) {
             if (e.target.id === `project--title${i}`) {
+                selectedProject = i; 
                 clearTaskList();
                 writeProjectTasks(i);
             };
@@ -407,9 +415,8 @@ function projectButtons() {
     list.addEventListener('click', (e) => {                // add task to project
         for (let i = 0; i < todo().listProjects().length; i++) {
             if (e.target.id === `addTaskBtn${i}`) {
-                console.log(`addTaskBtn${i}`);
                 createTaskForm(i); 
-                addTaskToDo(i); 
+                addTaskToDo(i, selectedProject); 
             };
         };
     });
