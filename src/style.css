@@ -229,6 +229,10 @@
     padding: 1%; 
 }
 
+.task--strikethrough {
+    text-decoration:line-through;
+}
+
 .task--display > p {
     grid-column: auto; 
     font-style: normal; 
