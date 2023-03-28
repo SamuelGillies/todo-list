@@ -345,7 +345,10 @@ function addProjectToDo() {
         let project = document.getElementById('project-name').value;
         todo().addProject(project); 
         clearSidebar();
-        writeProjectSidebar();    
+        writeProjectSidebar();   
+        clearTaskList(); 
+        let newProj = Number((todo().listProjects().length) - 1); 
+        writeProjectTasks(newProj);
     });
 }
 
@@ -386,6 +389,7 @@ function projectButtons() {
     });
 
     addProjectBtn.addEventListener('click', (e) => {
+        selectedProject = Number((todo().listProjects().length) - 1);
         createProjectForm();
         addProjectToDo(); 
     });
