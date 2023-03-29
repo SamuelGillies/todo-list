@@ -1,20 +1,5 @@
 import todo from './todo.js'; 
 
-
-// todo().addProject('Gerhard', 'Edit Audio', '22/04/2024', 3, 'Edit audio, remove hum');
-// todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
-// todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
-// todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
-// todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
-// todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
-// todo().addProject('Berk');
-// todo().addTaskToProject(1, 'Build digital studio', '25/05/2024', 4, 'Learn React, then build studio as necessary')
-// todo().addProject('Judd');
-// todo().addTaskToProject(2, 'Create digital studio', '21/08/2023', 2, 'knock up rough draft of alternative option')
-
-
-
-
 function header() {
     const element = document.getElementById('container'); 
     const header = document.createElement('header'); 
@@ -509,3 +494,14 @@ export default function generateDOM() {
     writeProjectSidebar();
     writeAllTasks();
 };
+
+// todo().addProject('Gerhard', 'Edit Audio', '22/04/2024', 3, 'Edit audio, remove hum');
+// todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
+// todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
+// todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
+// todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
+// todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
+// todo().addProject('Berk');
+// todo().addTaskToProject(1, 'Build digital studio', '25/05/2024', 4, 'Learn React, then build studio as necessary')
+// todo().addProject('Judd');
+// todo().addTaskToProject(2, 'Create digital studio', '21/08/2023', 2, 'knock up rough draft of alternative option')
