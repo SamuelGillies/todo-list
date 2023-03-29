@@ -9,13 +9,14 @@ export default function todo() {
         return todoList; 
     }
 
+    function listProjects_serialised() {
+        let todoList_serialised = JSON.stringify(todoList); 
+        return todoList_serialised; 
+    }
+
     function addProject(project) {
         todoList.push(new myProject(project, [])); 
     }
-
-    // function addProject(project, task, dueDate, priority, description) {
-    //     todoList.push(new myProject(project, [new myTask(task, dueDate, priority, description)])); 
-    // }
 
     function deleteProject(project) {
         todoList.splice(project, 1);
@@ -41,14 +42,20 @@ export default function todo() {
         todoList[project]['tasks'][task].status = !todoList[project]['tasks'][task].status; 
     }
 
+    function loadStorage(s) {
+        todoList = s; 
+    }
+
     return {
-        listProjects, 
+        listProjects,
+        listProjects_serialised, 
         addProject, 
         deleteProject,
         addTaskToProject, 
         removeTaskFromProject, 
         clearProjects, 
         editProjectTasks,
-        changeTaskStatus   
+        changeTaskStatus,
+        loadStorage   
     };
 };

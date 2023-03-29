@@ -1,17 +1,18 @@
-import myProject from './projects.js';
 import todo from './todo.js'; 
 
-todo().addProject('Gerhard', 'Edit Audio', '22/04/2024', 3, 'Edit audio, remove hum');
-todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
-todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
-todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
-todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
-todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
-todo().addProject('Berk');
-todo().addTaskToProject(1, 'Build digital studio', '25/05/2024', 4, 'Learn React, then build studio as necessary')
-todo().addProject('Judd');
-todo().addTaskToProject(2, 'Create digital studio', '21/08/2023', 2, 'knock up rough draft of alternative option')
-console.log(todo().listProjects()); 
+
+// todo().addProject('Gerhard', 'Edit Audio', '22/04/2024', 3, 'Edit audio, remove hum');
+// todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
+// todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
+// todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
+// todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
+// todo().addTaskToProject(0, 'Create metadata', '15/05/2023', 4, 'Create metadata as per HQ guidelines')
+// todo().addProject('Berk');
+// todo().addTaskToProject(1, 'Build digital studio', '25/05/2024', 4, 'Learn React, then build studio as necessary')
+// todo().addProject('Judd');
+// todo().addTaskToProject(2, 'Create digital studio', '21/08/2023', 2, 'knock up rough draft of alternative option')
+
+
 
 
 function header() {
@@ -76,33 +77,33 @@ function fixedContent() {
     inboxLabel.innerHTML = 'All Tasks'; 
 
 
-    const today = document.createElement('button'); 
-    const todayIcon = document.createElement('img'); 
-    const todayLabel = document.createElement('p'); 
-    today.setAttribute('id', 'sidebar--today'); 
-    today.setAttribute('class', 'button'); 
-    todayIcon.setAttribute('id', 'sidebar--todayIcon'); 
-    todayIcon.setAttribute('class', 'icon'); 
-    todayIcon.setAttribute('src', '../src/icons/today.svg'); 
-    todayLabel.setAttribute('id', 'sidebar--todayLabel'); 
-    todayLabel.setAttribute('class', 'label'); 
-    projectsBase.appendChild(today); 
-    today.append(todayIcon,todayLabel); 
-    todayLabel.innerHTML = 'Today'; 
+    // const today = document.createElement('button'); 
+    // const todayIcon = document.createElement('img'); 
+    // const todayLabel = document.createElement('p'); 
+    // today.setAttribute('id', 'sidebar--today'); 
+    // today.setAttribute('class', 'button'); 
+    // todayIcon.setAttribute('id', 'sidebar--todayIcon'); 
+    // todayIcon.setAttribute('class', 'icon'); 
+    // todayIcon.setAttribute('src', '../src/icons/today.svg'); 
+    // todayLabel.setAttribute('id', 'sidebar--todayLabel'); 
+    // todayLabel.setAttribute('class', 'label'); 
+    // projectsBase.appendChild(today); 
+    // today.append(todayIcon,todayLabel); 
+    // todayLabel.innerHTML = 'Today'; 
 
-    const thisWeek = document.createElement('button'); 
-    const thisWeekIcon = document.createElement('img'); 
-    const thisWeekLabel = document.createElement('p'); 
-    thisWeek.setAttribute('id', 'sidebar--thisWeek'); 
-    thisWeek.setAttribute('class', 'button'); 
-    thisWeekIcon.setAttribute('id', 'sidebar--thisWeekIcon'); 
-    thisWeekIcon.setAttribute('class', 'icon'); 
-    thisWeekIcon.setAttribute('src', '../src/icons/calendar.svg'); 
-    thisWeekLabel.setAttribute('id', 'sidebar--thisWeekLabel'); 
-    thisWeekLabel.setAttribute('class', 'label'); 
-    projectsBase.appendChild(thisWeek); 
-    thisWeek.append(thisWeekIcon,thisWeekLabel); 
-    thisWeekLabel.innerHTML = 'This Week'; 
+    // const thisWeek = document.createElement('button'); 
+    // const thisWeekIcon = document.createElement('img'); 
+    // const thisWeekLabel = document.createElement('p'); 
+    // thisWeek.setAttribute('id', 'sidebar--thisWeek'); 
+    // thisWeek.setAttribute('class', 'button'); 
+    // thisWeekIcon.setAttribute('id', 'sidebar--thisWeekIcon'); 
+    // thisWeekIcon.setAttribute('class', 'icon'); 
+    // thisWeekIcon.setAttribute('src', '../src/icons/calendar.svg'); 
+    // thisWeekLabel.setAttribute('id', 'sidebar--thisWeekLabel'); 
+    // thisWeekLabel.setAttribute('class', 'label'); 
+    // projectsBase.appendChild(thisWeek); 
+    // thisWeek.append(thisWeekIcon,thisWeekLabel); 
+    // thisWeekLabel.innerHTML = 'This Week'; 
 
     const projectsTitle = document.createElement('h2'); 
     projectsTitle.setAttribute('id', 'sidebar--projectsTitle'); 
@@ -393,16 +394,19 @@ function addTaskToDo(i, selectedProject) {
     });
 }
 
-
 function projectButtons() {
+    const app = document.getElementById('content'); 
     const allTasksBtn = document.getElementById('sidebar--inbox'); 
-    const todayTasksBtn = document.getElementById('sidebar--today'); 
-    const weekTasksBtn = document.getElementById('sidebar--thisWeek'); 
     const addProjectBtn = document.getElementById('sidebar--addProject'); 
     const projectsExtra = document.getElementById('sidebar--projectsExtra');
     const list = document.getElementById('list');
 
     let selectedProject = -1; 
+
+    app.addEventListener('click', (e) => {
+        let saveState = todo().listProjects_serialised(); 
+        localStorage.setItem('save', saveState); 
+    });
 
     allTasksBtn.addEventListener('click', (e) => {
         selectedProject = -1;
@@ -484,7 +488,17 @@ function projectButtons() {
 
 }
 
+function startUp() {
+    if (!localStorage.getItem('save')) {
+        todo().loadStorage([]);
+    } else {
+        todo().loadStorage(JSON.parse(localStorage.getItem('save'))); 
+    }
+}
+
+
 export default function generateDOM() {
+    startUp()
     document.body.append(
         header(), 
         fixedContent(), 
@@ -494,5 +508,4 @@ export default function generateDOM() {
 
     writeProjectSidebar();
     writeAllTasks();
-
 };

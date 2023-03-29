@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/SamuelGillies/todo-list#readme",
   "devDependencies": {
+    "css-loader": "^6.7.3",
     "prettier": "^2.8.4",
+    "style-loader": "^3.3.2",
     "webpack": "^5.76.1",
     "webpack-cli": "^5.0.1"
   }
